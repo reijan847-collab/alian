@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Menu Gallery</title>
+  <style>
+    body {
+      background-image: url("new.jpg");
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    nav ul {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    nav li {
+      float: left;
+      list-style: none;
+    }
+
+    nav li a {
+      display: inline-block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    nav li a:hover {
+      background-color: #126C66;
+    }
+
+    .cart-summary {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      font-weight: bold;
+      border-bottom: 2px solid #126C66;
+    }
+
+    .filter {
+      text-align: center;
+      margin: 20px 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .gallery {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 10px;
+      width: 220px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .gallery:hover {
+      transform: scale(1.03);
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .price {
+      color: #126C66;
+      font-weight: bold;
+      margin: 6px 0;
+    }
+
+    .description button {
+      background-color: #126C66;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .description button:hover {
+      background-color: #0f5550;
+    }
+
+    .item {
+      display: none;
+    }
+
+    #cart-table {
+      width: 85%;
+      margin: 30px auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+      display: none;
+    }
+
+    #cart-table th,
+    #cart-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #cart-table th {
+      background-color: #126C66;
+      color: white;
+    }
+
+    #cart-total-row {
+      font-weight: bold;
+      background-color: rgba(18, 108, 102, 0.1);
+    }
+
+    .remove-btn {
+      background-color: #b03b3b;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background-color: #8c2f2f;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="etongani.html">Home</a></li>
+      <li><a href="galery1.html">Menu</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="register.html">Register</a></li>
+    </ul>
+  </nav>
+
+  <div class="cart-summary">
+    🛍️ Cart: <span id="cart-count">0</span> items | Total: ₱<span id="cart-total">0.00</span>
+  </div>
+
+  <section style="text-align:center;">
+    <div class="filter">
+      <input type="radio" name="cat" value="all" checked> All
+      <input type="radio" name="cat" value="hot"> Hot Drinks
+      <input type="radio" name="cat" value="cold"> Cold Drinks
+      <input type="radio" name="cat" value="frapp"> Frappe
+      <input type="radio" name="cat" value="pastrie"> Pastries
+    </div>
+
+    <div class="gallery-container">
+
+      <!-- HOT DRINKS -->
+      <div class="gallery item hot">
+        <img src="espresso.jpeg" alt="Espresso">
+        <div class="price">₱120</div>
+        <button onclick="addToCart('Espresso', 120)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item hot">
+        <img src="macchiato.jpg" alt="Macchiato">
+        <div class="price">₱140</div>
+        <button onclick="addToCart('Macchiato', 140)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item hot">
+        <img src="cappucino.jpg" alt="Cappuccino">
+        <div class="price">₱130</div>
+        <button onclick="addToCart('Cappuccino', 130)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item hot">
+        <img src="amerikano.jpg" alt="Americano">
+        <div class="price">₱120</div>
+        <button onclick="addToCart('Americano', 120)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item hot">
+        <img src="chc.jpg" alt="Cinnamon Hot Chocolate">
+        <div class="price">₱150</div>
+        <button onclick="addToCart('Cinnamon Hot Chocolate', 150)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item hot">
+        <img src="matcha.jpg" alt="Hot Matcha Latte">
+        <div class="price">₱155</div>
+        <button onclick="addToCart('Hot Matcha Latte', 155)">Add to Cart</button>
+      </div>
+
+      <!-- COLD DRINKS -->
+      <div class="gallery item cold">
+        <img src="caramelM.jpg" alt="Caramel Macchiato">
+        <div class="price">₱160</div>
+        <button onclick="addToCart('Caramel Macchiato', 160)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item cold">
+        <img src="matchaa.jpg" alt="Iced Matcha">
+        <div class="price">₱150</div>
+        <button onclick="addToCart('Iced Matcha', 150)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item cold">
+        <img src="images/taro.jpg" alt="Taro">
+        <div class="price">₱140</div>
+        <button onclick="addToCart('Taro', 140)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item cold">
+        <img src="images/okinawa.jpg" alt="Okinawa">
+        <div class="price">₱140</div>
+        <button onclick="addToCart('Okinawa', 140)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item cold">
+        <img src="images/matcha-strawberry.jpg" alt="Matcha Strawberry">
+        <div class="price">₱160</div>
+        <button onclick="addToCart('Matcha Strawberry', 160)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item cold">
+        <img src="images/orange-coconut.jpg" alt="Orange Coconut">
+        <div class="price">₱150</div>
+        <button onclick="addToCart('Orange Coconut', 150)">Add to Cart</button>
+      </div>
+
+      <!-- FRAPPE -->
+      <div class="gallery item frapp">
+        <img src="espressof.jpg" alt="Espresso Frappe">
+        <div class="price">₱180</div>
+        <button onclick="addToCart('Espresso Frappe', 180)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item frapp">
+        <img src="coco.jpg" alt="Coconut Matcha Frappe">
+        <div class="price">₱190</div>
+        <button onclick="addToCart('Coconut Matcha Frappe', 190)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item frapp">
+        <img src="mochaa.jpg" alt="Mocha Frappe">
+        <div class="price">₱185</div>
+        <button onclick="addToCart('Mocha Frappe', 185)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item frapp">
+        <img src="ass.jpg" alt="Cappuccino Frappe">
+        <div class="price">₱180</div>
+        <button onclick="addToCart('Cappuccino Frappe', 180)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item frapp">
+        <img src="caramel.jpg" alt="Iced Caramel Frappe">
+        <div class="price">₱190</div>
+        <button onclick="addToCart('Iced Caramel Frappe', 190)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item frapp">
+        <img src="salted.jpg" alt="Salted Caramel Frappe">
+        <div class="price">₱200</div>
+        <button onclick="addToCart('Salted Caramel Frappe', 200)">Add to Cart</button>
+      </div>
+
+      <!-- PASTRIES -->
+      <div class="gallery item pastrie">
+        <img src="choco.jpg" alt="Chocolate Mousse">
+        <div class="price">₱150</div>
+        <button onclick="addToCart('Chocolate Mousse', 150)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item pastrie">
+        <img src="bliss.jpg" alt="Chocolate Bliss Cake">
+        <div class="price">₱180</div>
+        <button onclick="addToCart('Chocolate Bliss Cake', 180)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item pastrie">
+        <img src="cheese.jpg" alt="New York Cheesecake">
+        <div class="price">₱220</div>
+        <button onclick="addToCart('New York Cheesecake', 220)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item pastrie">
+        <img src="banoffee.jpg" alt="Banoffee Cheesecake">
+        <div class="price">₱210</div>
+        <button onclick="addToCart('Banoffee Cheesecake', 210)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item pastrie">
+        <img src="bacon.jpg" alt="Bacon Belgian Waffle">
+        <div class="price">₱170</div>
+        <button onclick="addToCart('Bacon Belgian Waffle', 170)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item pastrie">
+        <img src="cinnamon.jpg" alt="Cinnamon Danish">
+        <div class="price">₱150</div>
+        <button onclick="addToCart('Cinnamon Danish', 150)">Add to Cart</button>
+      </div>
+
+      <div class="gallery item pastrie">
+        <img src="french.jpg" alt="French Butter Croissant">
+        <div class="price">₱140</div>
+        <button onclick="addToCart('French Butter Croissant', 140)">Add to Cart</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CART TABLE -->
+  <table id="cart-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price (₱)</th>
+        <th>Quantity</th>
+        <th>Subtotal (₱)</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="cart-body"></tbody>
+    <tfoot>
+      <tr id="cart-total-row">
+        <td colspan="3">Total</td>
+        <td colspan="2" id="cart-grand-total">₱0.00</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script>
+    // Filter Function
+    function showCategory(category) {
+      const items = document.querySelectorAll('.item');
+      items.forEach(item => {
+        item.style.display = (category === 'all' || item.classList.contains(category))
+          ? 'inline-block'
+          : 'none';
+      });
+    }
+
+    document.querySelectorAll('input[name="cat"]').forEach(radio => {
+      radio.addEventListener('change', function () {
+        showCategory(this.value);
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => showCategory('all'));
+
+    // Cart System
+    const cart = {};
+    const cartCountEl = document.getElementById('cart-count');
+    const cartTotalEl = document.getElementById('cart-total');
+    const cartTable = document.getElementById('cart-table');
+    const cartBody = document.getElementById('cart-body');
+    const cartGrandTotalEl = document.getElementById('cart-grand-total');
+
+    function addToCart(name, price) {
+      if (cart[name]) cart[name].quantity++;
+      else cart[name] = { price, quantity: 1 };
+      updateCart();
+      alert(`${name} added to cart!`);
+    }
+
+    function removeFromCart(name) {
+      delete cart[name];
+      updateCart();
+    }
+
+    function updateCart() {
+      let totalItems = 0, totalPrice = 0;
+      cartBody.innerHTML = '';
+      for (const [name, item] of Object.entries(cart)) {
+        const subtotal = item.price * item.quantity;
+        totalItems += item.quantity;
+        totalPrice += subtotal;
+        cartBody.innerHTML += `
+          <tr>
+            <td>${name}</td>
+            <td>₱${item.price}</td>
+            <td>${item.quantity}</td>
+            <td>₱${subtotal}</td>
+            <td><button class="remove-btn" onclick="removeFromCart('${name}')">Remove</button></td>
+          </tr>`;
+      }
+      cartCountEl.textContent = totalItems;
+      cartTotalEl.textContent = totalPrice.toFixed(2);
+      cartGrandTotalEl.textContent = `₱${totalPrice.toFixed(2)}`;
+      cartTable.style.display = totalItems ? 'table' : 'none';
+    }
+  </script>
+</body>
+
+</html>
