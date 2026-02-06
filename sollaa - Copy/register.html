@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation with Registration</title>
+    <style>
+        body {
+            background-image: url("image-generator.png");
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            margin: 10px;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* NAVIGATION BAR */
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        li {
+            position: relative;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #8a2c06;
+        }
+
+        /* DROPDOWN MENU */
+        ul li ul.dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            min-width: 150px;
+        }
+
+        ul li ul.dropdown li {
+            display: block;
+        }
+
+        ul li:hover ul.dropdown {
+            display: block;
+        }
+
+        /* REGISTRATION FORM */
+        .registration-section {
+            max-width: 400px;
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .registration-section h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, select {
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255,255,255,0.9);
+            color: #000;
+        }
+
+        input[type="submit"] {
+            background-color: #126C66;
+            color: black;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0e5050;
+        }
+
+        /* SUCCESS MESSAGE */
+        #successMessage {
+            color: lightgreen;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <ul>
+            <li><a href="etongani.html">Home</a></li>
+           
+            <li><a href="galery1.html">Menu</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="register.html">Register</a></li>
+        </ul>
+    </nav>
+
+    <!-- Registration Form Section -->
+    <div class="registration-section">
+        <h2>Register</h2>
+        <form id="registrationForm" action="#" method="post">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+         
+
+            <input type="submit" value="Register">
+        </form>
+
+        <!-- Success message -->
+        <p id="successMessage">Registered Successfully!</p>
+    </div>
+
+    <script>
+        // When the form is submitted
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // prevent page refresh
+            document.getElementById("successMessage").style.display = "block"; // show success message
+            this.reset(); // clear the form
+        });
+    </script>
+
+</body>
+</html>
